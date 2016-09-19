@@ -1,8 +1,3 @@
-from DirectorioDeBares import *
-from Bar import *
-from Atributo import *
-from Calificacion import *
-from RegistroDeCalificaciones import *
 from Filtracion import *
 from datos import *
 import sys
@@ -26,7 +21,7 @@ def opciones_filtrar():
   if opcion == 1:
     opcion_filtrado = 8
     while not (0 <= opcion_filtrado <= 5):
-      opcion_filtrado = int(input("Ingrese cantidad de estrellas mínima. Debe ser un valor entre 0 y 5: "))
+      opcion_filtrado = float(input("Ingrese cantidad de estrellas mínima. Debe ser un valor entre 0 y 5: "))
     filtro = FiltracionCalificacion(directorio, registro, wifi, opcion_filtrado)
     imprimir(filtro)
 

@@ -1,6 +1,6 @@
 class Ubicacion:
   import geopy, geopy.distance
-  geolocator = geopy.geocoders.Nominatim(timeout = 5)
+  geolocator = geopy.geocoders.GoogleV3("AIzaSyAOPhtRuh0rMVylnRdMn_G529La1eMsybI", timeout = 5)
   distance = geopy.distance.distance
 
   def __init__(self, direccion):

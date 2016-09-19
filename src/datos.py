@@ -1,4 +1,8 @@
-
+from DirectorioDeBares import *
+from Bar import *
+from Atributo import *
+from Calificacion import *
+from RegistroDeCalificaciones import *
 
 wifi = Atributo("Wi-Fi")
 atributos = [wifi]
@@ -9,7 +13,7 @@ bar1 = Bar("Tienda del cafe", "Santa Fe y Callao", atributos)
 bar2 = Bar("Cafe Martinez", "Pueyrredon y Cordoba", atributos)
 bar3 = Bar("Starbucks", "Las Heras y Uriburu", [])
 bar4 = Bar("Tips", "Las Heras y Pueyrredon", atributos)
-bar5 = Bar("Muu lecheria", "Soler y Paraguay", [])
+bar5 = Bar("Muu lecheria", "Costa Rica y Armenia", [])
 bar6 = Bar("La biela", "Junin y Guido", atributos)
 
 directorio.agregar(bar1)
