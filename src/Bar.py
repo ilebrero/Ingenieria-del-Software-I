@@ -11,7 +11,10 @@ class Bar:
 
   def __str__(self):
     res = "Nombre: " + self.nombre + "\nDireccion: " + str(self.ubicacion) + "\nAtributos: "
-    for atributo in self.atributos:
-      res += str(atributo)
+    if (len(self.atributos) != 0):
+      for atributo in self.atributos:
+        res += str(atributo)
+    else:
+        res += 'sin atributos'
     
     return res
