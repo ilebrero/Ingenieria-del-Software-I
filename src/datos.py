@@ -5,16 +5,16 @@ from Calificacion import *
 from RegistroDeCalificaciones import *
 
 wifi = Atributo("Wi-Fi")
-atributos = [wifi]
+aircon = Atributo("Aire Acondicionado")
 
 directorio = DirectorioDeBares()
 
-bar1 = Bar("Tienda del cafe", "Santa Fe y Callao", atributos)
-bar2 = Bar("Cafe Martinez", "Pueyrredon y Cordoba", atributos)
-bar3 = Bar("Starbucks", "Las Heras y Uriburu", [])
-bar4 = Bar("Tips", "Las Heras y Pueyrredon", atributos)
+bar1 = Bar("Tienda del cafe", "Santa Fe y Callao", [wifi])
+bar2 = Bar("Cafe Martinez", "Pueyrredon y Cordoba", [wifi, aircon])
+bar3 = Bar("Starbucks", "Las Heras y Uriburu", [aircon])
+bar4 = Bar("Tips", "Las Heras y Pueyrredon", [wifi])
 bar5 = Bar("Muu lecheria", "Costa Rica y Armenia", [])
-bar6 = Bar("La biela", "Junin y Guido", atributos)
+bar6 = Bar("La biela", "Junin y Guido", [wifi])
 
 directorio.agregar(bar1)
 directorio.agregar(bar2)

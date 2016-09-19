@@ -9,12 +9,21 @@ class Bar:
 
   # FALTA METODO NOMBRE DE BAR
 
-  def __str__(self):
-    res = "Nombre: " + self.nombre + "\nDireccion: " + str(self.ubicacion) + "\nAtributos: "
-    if (len(self.atributos) != 0):
-      for atributo in self.atributos:
-        res += str(atributo)
-    else:
-        res += 'sin atributos'
-    
+  def str_con_calificacion(self, registro):
+    res  =       "┌─────────────────────────────────────────────────────────┐\n"
+    res +=       "│ " + self.nombre.ljust(55)                           + " │\n"
+    res +=       "│ " + str(self.ubicacion).ljust(55)                   + " │\n"
+    if self.atributos:
+        res +=   "├─────────────────────────────────────────────────────────┤\n"
+        for atributo in self.atributos:
+          try:
+            p = registro.obtener_promedio(self, atributo)
+            atr = str(atributo) + " (★ " + "{:.1f}".format(p) + ")"
+          except:
+            atr = str(atributo)
+          res += "│ " + atr.ljust(55)                                   + " │\n"
+    res +=       "└─────────────────────────────────────────────────────────┘"
     return res
+
+  def __str__(self):
+    return self.str_con_calificacion(None)

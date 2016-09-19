@@ -4,13 +4,7 @@ import sys
 
 def imprimir(bares):
   for bar in bares.listar():
-    print("Bar:")
-    print(bar)
-    try:
-      print("Puntaje Wi-Fi: " + str(registro.obtener_promedio(bar, wifi)))
-    except:
-      pass
-    print("")
+    print(bar.str_con_calificacion(registro))
 
 def opciones_filtrar():
   print("Seleccione una opción de filtro: ")
