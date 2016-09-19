@@ -15,3 +15,17 @@ class FiltracionCalificacion(Filtracion):
           yield bar
       except:
         pass
+
+class FiltracionUbicacion(Filtracion):
+  from Ubicacion import Ubicacion
+
+  def __init__(self, bares, registro, ubicacion):
+    self.bares = bares
+    self.registro = registro
+    self.ubicacion = Ubicacion(ubicacion)
+
+  def listar(self):
+    for bar in self.bares.listar():
+      if bar.ubicacion.distancia_a(ubicacion).meters <= 400:
+        yield bar
+
