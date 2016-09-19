@@ -22,10 +22,10 @@ class FiltracionUbicacion(Filtracion):
   def __init__(self, bares, registro, ubicacion):
     self.bares = bares
     self.registro = registro
-    self.ubicacion = Ubicacion(ubicacion)
+    self.ubicacion = self.Ubicacion(ubicacion)
 
   def listar(self):
     for bar in self.bares.listar():
-      if bar.ubicacion.distancia_a(ubicacion).meters <= 400:
+      if bar.ubicacion.distancia_a(self.ubicacion).meters <= 400:
         yield bar
 

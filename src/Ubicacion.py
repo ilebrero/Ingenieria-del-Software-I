@@ -1,15 +1,14 @@
 class Ubicacion:
   import geopy, geopy.distance
-  geolocator = geopy.geocoders.Nominatim()
+  geolocator = geopy.geocoders.Nominatim(timeout = 5)
   distance = geopy.distance.distance
 
   def __init__(self, direccion):
-    self.ubicacion = geolocator.geocode(direccion + ", Buenos Aires, Argentina")
-    self.direccion = location.address 
-    self.coordenadas = location.longitud, location.latitude
+    self._location = self.geolocator.geocode(direccion + ", Buenos Aires, Argentina")
+    self.direccion = direccion
 
   def __str__(self):
     return self.direccion
 
-  def distancia_a(self, ubicacion):
-    return distance(self.ubicacion.point, self.ubicacion.point)
+  def distancia_a(self, otra_ubicacion):
+    return self.distance(self._location.point, otra_ubicacion._location.point)

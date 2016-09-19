@@ -43,18 +43,12 @@ def opciones_filtrar():
     while not (0 <= opcion_filtrado <= 5):
       opcion_filtrado = int(input("Ingrese cantidad de estrellas mínima. Debe ser un valor entre 0 y 5: "))
     filtro = FiltracionCalificacion(directorio, registro, wifi, opcion_filtrado)
-    for bar in filtro.listar():
-      print("Bar:")
-      print(bar)
-      try:
-        print("Puntaje Wi-Fi: " + str(registro.obtener_promedio(bar, wifi)))
-      except:
-        pass
-      print("")
+    imprimir(filtro)
 
   elif opcion == 2:
-    opcion_filtrado = input("Ingrese ubicación: ")
-    pass
+    ubicacion = input("Ingrese ubicación: ")
+    filtro = FiltracionUbicacion(directorio, registro, ubicacion)
+    imprimir(filtro)
 
   
 def menu():
