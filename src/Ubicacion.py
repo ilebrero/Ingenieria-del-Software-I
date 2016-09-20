@@ -4,6 +4,7 @@ class Ubicacion:
   distance = geopy.distance.distance
 
   def __init__(self, direccion):
+    # [TODO] user concurrent.futures
     self._location = self.geolocator.geocode(direccion + ", Buenos Aires, Argentina")
     self.direccion = direccion
 
