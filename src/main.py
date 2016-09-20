@@ -38,7 +38,11 @@ def menu():
 
 
 def main():
-  menu()
+  try:
+    while True:
+      menu()
+  except (EOFError, KeyboardInterrupt):
+    pass
 
 if __name__ == '__main__':
   main()
