@@ -2,6 +2,7 @@ from Ubicacion import *
 
 class Bar:
 
+  # [TODO] tal vez debería recibir una ubicación en vez de una dirección
   def __init__(self, nombre, direccion, atributos):
     self.nombre = nombre 
     self.ubicacion = Ubicacion(direccion)
