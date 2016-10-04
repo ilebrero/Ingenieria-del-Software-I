@@ -1,3 +1,6 @@
+from Ubicacion import *
+
+
 class Filtracion:
   pass
 
@@ -17,15 +20,17 @@ class FiltracionCalificacion(Filtracion):
         pass
 
 class FiltracionUbicacion(Filtracion):
-  from Ubicacion import Ubicacion
 
   def __init__(self, bares, registro, ubicacion):
     self.bares = bares
     self.registro = registro
-    self.ubicacion = self.Ubicacion(ubicacion)
+    self.ubicacion = Ubicacion(ubicacion)
+    self.calculador_de_distancias = CalculadorDeDistancias()
 
+	#TODO: parametrizar distancia
   def listar(self):
     for bar in self.bares.listar():
-      if bar.ubicacion.distancia_a(self.ubicacion).meters <= 400:
+      distancia = self.calculador_de_distancias.distancia_entre(bar.ubicacion, self.ubicacion)
+      if distancia <= 400:
         yield bar
 
