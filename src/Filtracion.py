@@ -21,16 +21,16 @@ class FiltracionCalificacion(Filtracion):
 
 class FiltracionUbicacion(Filtracion):
 
-  def __init__(self, bares, registro, ubicacion):
+  def __init__(self, bares, registro, ubicacion, radio):
     self.bares = bares
     self.registro = registro
     self.ubicacion = Ubicacion(ubicacion)
     self.calculador_de_distancias = CalculadorDeDistancias()
+    self.radio = radio
 
-	#TODO: parametrizar distancia
   def listar(self):
     for bar in self.bares.listar():
       distancia = self.calculador_de_distancias.distancia_entre(bar.ubicacion, self.ubicacion)
-      if distancia <= 400:
+      if distancia <= self.radio:
         yield bar
 

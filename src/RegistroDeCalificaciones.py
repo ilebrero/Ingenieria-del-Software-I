@@ -8,7 +8,7 @@ class RegistroDeCalificaciones():
 
   # [TODO] hacer que a martin le guste el nombre
   def obtener_promedio(self, bar, atributo):
-    res = [c.puntaje for c in self.registro if c.bar == bar and c.atributo == atributo]
+    res = [calif.puntaje for calif in self.registro if calif.bar == bar and calif.atributo == atributo]
     try:
       return sum(res)/len(res)
     except ZeroDivisionError:
