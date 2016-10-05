@@ -20,12 +20,12 @@ def opciones_filtrar():
     imprimir(filtro)
 
   elif opcion == 2:
-    ubicacion = input("Ingrese ubicación: ")
+    direccion = input("Ingrese dirección: ")
     radio = int(input("Ingrese la cantidad de metros en la que quiere filtrar bares: ")) #reformular
     if not (0 <= radio):
       raise Exception("El radio debe ser mayor a cero")
     #radio => 0
-    filtro = FiltracionUbicacion(directorio, registro, ubicacion, radio)
+    filtro = FiltracionDireccion(directorio, registro, direccion, radio)
     imprimir(filtro)
 
   opciones_calificar(filtro)

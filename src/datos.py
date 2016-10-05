@@ -1,11 +1,11 @@
 from DirectorioDeBares import *
 from Bar import *
-from Atributo import *
+from Caracteristica import *
 from Calificacion import *
 from RegistroDeCalificaciones import *
 
-wifi = Atributo("Wi-Fi")
-aircon = Atributo("Aire Acondicionado")
+wifi = Caracteristica("Wi-Fi")
+aircon = Caracteristica("Aire Acondicionado")
 
 directorio = DirectorioDeBares()
 

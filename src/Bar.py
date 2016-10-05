@@ -1,28 +1,28 @@
-from Ubicacion import *
+from Direccion import *
 
 class Bar:
 
   # [TODO] tal vez debería recibir una ubicación en vez de una dirección
-  def __init__(self, nombre, direccion, atributos):
+  def __init__(self, nombre, direccion, caracteristicas):
     self.nombre = nombre 
-    self.ubicacion = Ubicacion(direccion)
-    self.atributos = atributos
+    self.direccion = Direccion(direccion)
+    self.caracteristicas = caracteristicas
 
   # FALTA METODO NOMBRE DE BAR
 
   def str_con_calificacion(self, registro):
     res  =       "┌─────────────────────────────────────────────────────────┐\n"
     res +=       "│ " + self.nombre.ljust(55)                           + " │\n"
-    res +=       "│ " + str(self.ubicacion).ljust(55)                   + " │\n"
-    if self.atributos:
+    res +=       "│ " + str(self.direccion).ljust(55)                   + " │\n"
+    if self.caracteristicas:
         res +=   "├─────────────────────────────────────────────────────────┤\n"
-        for atributo in self.atributos:
+        for caracteristica in self.caracteristicas:
           try:
-            p = registro.obtener_promedio(self, atributo)
-            atr = str(atributo) + " (★ " + "{:.1f}".format(p) + ")"
+            p = registro.obtener_promedio(self, caracteristica)
+            car = str(caracteristica) + " (★ " + "{:.1f}".format(p) + ")"
           except:
-            atr = str(atributo)
-          res += "│ " + atr.ljust(55)                                   + " │\n"
+            car = str(caracteristica)
+          res += "│ " + car.ljust(55)                                   + " │\n"
     res +=       "└─────────────────────────────────────────────────────────┘"
     return res
 
