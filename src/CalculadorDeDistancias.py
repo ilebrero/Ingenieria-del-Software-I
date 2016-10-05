@@ -21,6 +21,6 @@ class Geolocalizador:
   def traducir_direccion_a_coordenadas(self, direccion):
     c = self._memo.get(direccion)
     if not c:
-      c = _geolocator.geocode(str(direccion) + ", Buenos Aires, Argentina").point
+      c = _geolocator.geocode(str(direccion) + ", CABA, Argentina").point
     self._memo[direccion] = c
     return c
