@@ -21,7 +21,10 @@ def opciones_filtrar():
 
   elif opcion == 2:
     direccion = input("Ingrese dirección: ")
-    radio = int(input("Ingrese la cantidad de metros en la que quiere filtrar bares: ")) #reformular
+    try:
+        radio = int(input("Ingrese radio de distancia [400]: ")) #reformular
+    except ValueError:
+        radio = 400
     if not (0 <= radio):
       raise Exception("El radio debe ser mayor a cero")
     #radio => 0
