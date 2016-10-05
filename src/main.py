@@ -34,21 +34,7 @@ def opciones_filtrar():
   opciones_calificar(filtro)
 
 def opciones_calificar(bares):
-  opcion_valida = 0
-
-  while not opcion_valida:
-    print("¿Desea calificar algún bar?")
-    print("1. Si")
-    print("2. Volver al menú principal")
-    opcion = int(input("Ingrese el número: "))
-
-    if opcion == 1:
-      opciones_bares(bares)
-      opcion_valida = 1
-    elif opcion == 2:
-      opcion_valida = 1
-    else:
-      print("\nSeleccione una opción válida")
+    opciones_bares(bares)
 
 def opciones_bares(bares):
   nombre_valido = 0
@@ -56,7 +42,7 @@ def opciones_bares(bares):
   while not nombre_valido:
     print("\nNombres disponibles: ")
     for bar in bares.listar():
-      print(" -" + bar.nombre)
+      print("- " + bar.nombre)
     print("\nIngrese 0 para volver al menú principal")
 
     nombre_de_bar = str(input("Ingrese el nombre: "))
@@ -64,7 +50,7 @@ def opciones_bares(bares):
     if not nombre_de_bar == "0":
       for bar in bares.listar():
         if bar.nombre == nombre_de_bar:
-          opciones_calificar_atributo(bar)
+          opciones_calificar_caracteristica(bar)
           nombre_valido = 1
 
       if not nombre_valido:
@@ -72,36 +58,36 @@ def opciones_bares(bares):
     else:
       nombre_valido = 1
   
-def opciones_calificar_atributo(bar):
-  atributo_valido = 0
+def opciones_calificar_caracteristica(bar):
+  caracteristica_valido = 0
 
-  while not atributo_valido:
-    print("\nAtributos disponibles: ")
-    for atributo in bar.atributos:
-      print(" -" + atributo.nombre)
+  while not caracteristica_valido:
+    print("\ncaracteristicas disponibles: ")
+    for caracteristica in bar.caracteristicas:
+      print("- " + caracteristica.nombre)
     print("\nIngrese 0 para volver al menú principal")
 
-    atributo_a_calificar = str(input("Ingrese el atributo que desea calificar: "))
+    caracteristica_a_calificar = str(input("Ingrese la característica que desea calificar: "))
 
-    if not atributo_a_calificar == "0":
-      for atributo in bar.atributos:
-        if atributo.nombre == atributo_a_calificar:
-          obtener_puntaje(bar, atributo)
-          atributo_valido = 1
+    if not caracteristica_a_calificar == "0":
+      for caracteristica in bar.caracteristicas:
+        if caracteristica.nombre == caracteristica_a_calificar:
+          obtener_puntaje(bar, caracteristica)
+          caracteristica_valido = 1
       
-      if not atributo_valido:
-        print("Seleccione un atributo existente")
+      if not caracteristica_valido:
+        print("Seleccione una característica existente")
     else:
-      atributo_valido = 1
+      caracteristica_valido = 1
 
-def obtener_puntaje(bar, atributo):
+def obtener_puntaje(bar, caracteristica):
   puntaje_valido = 0
 
   while not puntaje_valido:
     puntaje = int(input("Ingrese un puntaje(0 a 5): "))
     
     if 0 <= puntaje <= 5:
-      calificacion = Calificacion(bar, atributo, puntaje)
+      calificacion = Calificacion(bar, caracteristica, puntaje)
       registro.agregar(calificacion)
       puntaje_valido = 1
     else:
@@ -111,13 +97,15 @@ def menu():
   print("Seleccione una opción: ")
   print("1. Listar todos los bares")
   print("2. Filtrar bares")
+  print("3. Calificar un bar")
   opcion = int(input("Ingrese el número: "))
 
   if opcion == 1:
     imprimir(directorio)
-    opciones_calificar(directorio)
   elif opcion == 2:
     opciones_filtrar()
+  elif opcion == 3:
+    opciones_calificar(directorio)
 
 
 def main():
