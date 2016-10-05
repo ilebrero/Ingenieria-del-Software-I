@@ -6,10 +6,9 @@ class RegistroDeCalificaciones():
   def agregar(self, calificacion):
     self.registro.append(calificacion)
 
-  # [TODO] hacer que a martin le guste el nombre
-  def obtener_promedio(self, bar, atributo):
-    res = [calif.puntaje for calif in self.registro if calif.bar == bar and calif.atributo == atributo]
+  def obtener_promedio(self, bar, caracteristica):
+    res = [calif.puntaje for calif in self.registro if calif.bar == bar and calif.caracteristica == caracteristica]
     try:
       return sum(res)/len(res)
     except ZeroDivisionError:
-      raise Exception("Bar no tiene calificaciones de " + str(atributo))
+      raise Exception("Bar no tiene calificaciones de " + str(caracteristica))
