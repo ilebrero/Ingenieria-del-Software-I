@@ -1,6 +1,5 @@
 from Ubicacion import *
 
-
 class Filtracion:
   pass
 

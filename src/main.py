@@ -21,7 +21,7 @@ def opciones_filtrar():
 
   elif opcion == 2:
     ubicacion = input("Ingrese ubicación: ")
-    radio = int(input("Ingrese la cantidad de metros en la que quiere filtrar bares")) #reformular
+    radio = int(input("Ingrese la cantidad de metros en la que quiere filtrar bares: ")) #reformular
     if not (0 <= radio):
       raise Exception("El radio debe ser mayor a cero")
     #radio => 0
@@ -34,9 +34,9 @@ def opciones_calificar(bares):
   opcion_valida = 0
 
   while not opcion_valida:
-    print("Desea calificar algún bar?")
+    print("¿Desea calificar algún bar?")
     print("1. Si")
-    print("2. Volver al menu principal")
+    print("2. Volver al menú principal")
     opcion = int(input("Ingrese el número: "))
 
     if opcion == 1:
@@ -45,7 +45,7 @@ def opciones_calificar(bares):
     elif opcion == 2:
       opcion_valida = 1
     else:
-      print("\nSelecciona una opción válida")
+      print("\nSeleccione una opción válida")
 
 def opciones_bares(bares):
   nombre_valido = 0
@@ -54,7 +54,7 @@ def opciones_bares(bares):
     print("\nNombres disponibles: ")
     for bar in bares.listar():
       print(" -" + bar.nombre)
-    print("\nIngrese 0 para volver al menu principal")
+    print("\nIngrese 0 para volver al menú principal")
 
     nombre_de_bar = str(input("Ingrese el nombre: "))
 
@@ -76,7 +76,7 @@ def opciones_calificar_atributo(bar):
     print("\nAtributos disponibles: ")
     for atributo in bar.atributos:
       print(" -" + atributo.nombre)
-    print("\nIngrese 0 para volver al menu principal")
+    print("\nIngrese 0 para volver al menú principal")
 
     atributo_a_calificar = str(input("Ingrese el atributo que desea calificar: "))
 
@@ -102,7 +102,7 @@ def obtener_puntaje(bar, atributo):
       registro.agregar(calificacion)
       puntaje_valido = 1
     else:
-      print("ingrese un puntaje válido")
+      print("Ingrese un puntaje válido")
 
 def menu():
   print("Seleccione una opción: ")
