@@ -28,7 +28,82 @@ def opciones_filtrar():
     filtro = FiltracionUbicacion(directorio, registro, ubicacion, radio)
     imprimir(filtro)
 
+  opciones_calificar(filtro)
+
+def opciones_calificar(bares):
+  opcion_valida = 0
+
+  while not opcion_valida:
+    print("Desea calificar algún bar?")
+    print("1. Si")
+    print("2. Volver al menu principal")
+    opcion = int(input("Ingrese el número: "))
+
+    if opcion == 1:
+      opciones_bares(bares)
+      opcion_valida = 1
+    elif opcion == 2:
+      opcion_valida = 1
+    else:
+      print("\nSelecciona una opción válida")
+
+def opciones_bares(bares):
+  nombre_valido = 0
+
+  while not nombre_valido:
+    print("\nNombres disponibles: ")
+    for bar in bares.listar():
+      print(" -" + bar.nombre)
+    print("\nIngrese 0 para volver al menu principal")
+
+    nombre_de_bar = str(input("Ingrese el nombre: "))
+
+    if not nombre_de_bar == "0":
+      for bar in bares.listar():
+        if bar.nombre == nombre_de_bar:
+          opciones_calificar_atributo(bar)
+          nombre_valido = 1
+
+      if not nombre_valido:
+        print("\nSeleccione un nombre válido")
+    else:
+      nombre_valido = 1
   
+def opciones_calificar_atributo(bar):
+  atributo_valido = 0
+
+  while not atributo_valido:
+    print("\nAtributos disponibles: ")
+    for atributo in bar.atributos:
+      print(" -" + atributo.nombre)
+    print("\nIngrese 0 para volver al menu principal")
+
+    atributo_a_calificar = str(input("Ingrese el atributo que desea calificar: "))
+
+    if not atributo_a_calificar == "0":
+      for atributo in bar.atributos:
+        if atributo.nombre == atributo_a_calificar:
+          obtener_puntaje(bar, atributo)
+          atributo_valido = 1
+      
+      if not atributo_valido:
+        print("Seleccione un atributo existente")
+    else:
+      atributo_valido = 1
+
+def obtener_puntaje(bar, atributo):
+  puntaje_valido = 0
+
+  while not puntaje_valido:
+    puntaje = int(input("Ingrese un puntaje(0 a 5): "))
+    
+    if 0 <= puntaje <= 5:
+      calificacion = Calificacion(bar, atributo, puntaje)
+      registro.agregar(calificacion)
+      puntaje_valido = 1
+    else:
+      print("ingrese un puntaje válido")
+
 def menu():
   print("Seleccione una opción: ")
   print("1. Listar todos los bares")
@@ -37,6 +112,7 @@ def menu():
 
   if opcion == 1:
     imprimir(directorio)
+    opciones_calificar(directorio)
   elif opcion == 2:
     opciones_filtrar()
 
