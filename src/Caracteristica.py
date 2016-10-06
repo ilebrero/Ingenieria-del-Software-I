@@ -1,6 +1,9 @@
 class Caracteristica:
   _memo = dict()
 
+  def todas():
+    return Caracteristica._memo.values()
+
   def __new__(cls, nombre):
     return cls._memo.setdefault(nombre, super().__new__(cls))
 
