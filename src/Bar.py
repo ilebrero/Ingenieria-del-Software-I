@@ -10,7 +10,7 @@ class Bar:
 
   # FALTA METODO NOMBRE DE BAR
 
-  def str_con_calificacion(self, registro):
+  def mostrar_con_calificacion(self, registro):
     res  =       "┌─────────────────────────────────────────────────────────┐\n"
     res +=       "│ " + self.nombre.ljust(55)                           + " │\n"
     res +=       "│ " + str(self.direccion).ljust(55)                   + " │\n"
@@ -27,4 +27,4 @@ class Bar:
     return res
 
   def __str__(self):
-    return self.str_con_calificacion(None)
+    return self.mostrar_con_calificacion(None)

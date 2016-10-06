@@ -4,7 +4,7 @@ import sys
 
 def imprimir(bares):
   for bar in bares.listar():
-    print(bar.str_con_calificacion(registro))
+    print(bar.mostrar_con_calificacion(registro))
 
 def opciones_filtrar():
   print("Seleccione una opción de filtro: ")
