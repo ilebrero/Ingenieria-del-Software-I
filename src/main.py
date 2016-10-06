@@ -6,18 +6,20 @@ def imprimir(bares):
   for bar in bares.listar():
     print(bar.mostrar_con_calificacion(registro))
 
-def opciones_filtrar():
+def opciones_filtrar(bares):
   print("Seleccione una opción de filtro: ")
-  print("1. Por WI-FI")
+  print("1. Por calificación")
   print("2. Por ubicación")
   opcion = int(input("Ingrese el número: "))
 
   if opcion == 1:
-    opcion_filtrado = 8
-    while not (0 <= opcion_filtrado <= 5):
-      opcion_filtrado = float(input("Ingrese cantidad de estrellas mínima. Debe ser un valor entre 0 y 5: "))
-    filtro = FiltracionCalificacion(directorio, registro, wifi, opcion_filtrado)
-    imprimir(filtro)
+    print("Características disponibles:")
+    cs = list(Caracteristica.todas())
+    for i, c in enumerate(cs):
+      print("{}. {}".format(i+1, c))
+    opcion_caracteristica = int(input("Seleccione la característica: "))
+    opcion_puntaje = float(input("Ingrese puntaje mínimo. Debe ser un valor entre 0 y 5: "))
+    filtro = FiltracionCalificacion(bares, registro, cs[opcion_caracteristica-1], opcion_puntaje)
 
   elif opcion == 2:
     direccion = input("Ingrese dirección: ")
@@ -28,15 +30,20 @@ def opciones_filtrar():
     if not (0 <= radio):
       raise Exception("El radio debe ser mayor a cero")
     #radio => 0
-    filtro = FiltracionDireccion(directorio, registro, direccion, radio)
+    filtro = FiltracionDireccion(bares, registro, direccion, radio)
+
+  print("Seleccione siguiente acción:")
+  print("1. Añadir un filtro")
+  print("2. Ver resultados")
+  opcion2 = int(input("Ingrese el número: "))
+
+  if opcion2 == 1:
+    opciones_filtrar(filtro)
+
+  elif opcion2 == 2:
     imprimir(filtro)
 
-  opciones_calificar(filtro)
-
-def opciones_calificar(bares):
-    opciones_bares(bares)
-
-def opciones_bares(bares):
+def opciones_calificar_bares(bares):
   nombre_valido = 0
 
   while not nombre_valido:
@@ -103,9 +110,9 @@ def menu():
   if opcion == 1:
     imprimir(directorio)
   elif opcion == 2:
-    opciones_filtrar()
+    opciones_filtrar(directorio)
   elif opcion == 3:
-    opciones_calificar(directorio)
+    opciones_calificar_bares(directorio)
 
 
 def main():

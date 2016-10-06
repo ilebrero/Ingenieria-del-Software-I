@@ -17,6 +17,8 @@ class Filtracion:
 class FiltracionCalificacion(Filtracion):
 
   def __init__(self, bares, registro, atributo, puntaje):
+    if not (0 <= puntaje <= 5):
+      raise Exception("Puntaje no está entre 0 y 5")
     super().__init__(bares)
     self.atributo = atributo
     self.puntaje = puntaje
