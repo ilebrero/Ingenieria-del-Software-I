@@ -1,10 +1,47 @@
 from Filtracion import *
 from datos import *
+from Cartografo import *
 import sys
 
-def imprimir(bares):
-  for bar in bares.listar():
+def imprimir(bar):
+  opcion_valida = 0
+
+  while not opcion_valida:
     print(bar.mostrar_con_calificacion(registro))
+    print("¿Desea ver la ubicación del bar en un mapa?")
+    print("1. Si")
+    print("2. Volver al menu principal")
+
+    opcion = int(input("Ingrese un número: "))
+
+    if opcion == 1:
+      cartografo.marcar_en_mapa(bar)
+      cartografo.mostrar_mapa()
+      opcion_valida = 1
+    elif opcion == 2:
+      opcion_valida = 1
+
+def imprimir_nombres(bares):
+  nombre_valido = 0
+
+  while not nombre_valido:
+    print("\nBares disponibles: ")
+    for bar in bares.listar():
+      print("- " + bar.nombre)
+    print("\n¿Desea ver el detalle de algún bar? (Ingrese 0 para volver al menú principal)")
+
+    nombre_de_bar = str(input("Ingrese el nombre: "))
+
+    if not nombre_de_bar == "0":
+      for bar in bares.listar():
+        if bar.nombre == nombre_de_bar:
+          imprimir(bar)
+          nombre_valido = 1
+
+      if not nombre_valido:
+        print("\nSeleccione un nombre válido")
+    else:
+      nombre_valido = 1
 
 def opciones_filtrar(bares):
   print("Seleccione una opción de filtro: ")
@@ -41,7 +78,7 @@ def opciones_filtrar(bares):
     opciones_filtrar(filtro)
 
   elif opcion2 == 2:
-    imprimir(filtro)
+    imprimir_nombres(filtro)
 
 def opciones_calificar_bares(bares):
   nombre_valido = 0
@@ -108,12 +145,11 @@ def menu():
   opcion = int(input("Ingrese el número: "))
 
   if opcion == 1:
-    imprimir(directorio)
+    imprimir_nombres(directorio)
   elif opcion == 2:
     opciones_filtrar(directorio)
   elif opcion == 3:
     opciones_calificar_bares(directorio)
-
 
 def main():
   try:

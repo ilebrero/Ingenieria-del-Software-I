@@ -3,11 +3,14 @@ from Bar import *
 from Caracteristica import *
 from Calificacion import *
 from RegistroDeCalificaciones import *
+from Cartografo import *
 
 wifi = Caracteristica("Wi-Fi")
 aircon = Caracteristica("Aire Acondicionado")
 
 directorio = DirectorioDeBares()
+
+cartografo = Cartografo()
 
 bar1 = Bar("Tienda del cafe", "Santa Fe y Callao", [wifi])
 bar2 = Bar("Cafe Martinez", "Pueyrredon y Cordoba", [wifi, aircon])
