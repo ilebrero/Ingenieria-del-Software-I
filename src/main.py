@@ -7,7 +7,7 @@ def imprimir(bar):
   opcion_valida = 0
 
   while not opcion_valida:
-    print(bar.mostrar_con_calificacion(registro))
+    print("\n" + bar.mostrar_con_calificacion(registro) + "\n")
     print("¿Desea ver la ubicación del bar en un mapa?")
     print("1. Si")
     print("2. Volver al menu principal")
@@ -19,29 +19,34 @@ def imprimir(bar):
       cartografo.mostrar_mapa()
       opcion_valida = 1
     elif opcion == 2:
+      print("\n")
       opcion_valida = 1
 
 def imprimir_nombres(bares):
-  nombre_valido = 0
+    if not next(bares.listar(), None) == None:
+      nombre_valido = 0
 
-  while not nombre_valido:
-    print("\nBares disponibles: ")
-    for bar in bares.listar():
-      print("- " + bar.nombre)
-    print("\n¿Desea ver el detalle de algún bar? (Ingrese 0 para volver al menú principal)")
+      while not nombre_valido:
+        print("\nBares disponibles: ")
+        for bar in bares.listar():
+          print("- " + bar.nombre)
+        print("\n¿Desea ver el detalle de algún bar? (Ingrese 0 para volver al menú principal)")
 
-    nombre_de_bar = str(input("Ingrese el nombre: "))
+        nombre_de_bar = str(input("Ingrese el nombre: "))
 
-    if not nombre_de_bar == "0":
-      for bar in bares.listar():
-        if bar.nombre == nombre_de_bar:
-          imprimir(bar)
+        if not nombre_de_bar == "0":
+          for bar in bares.listar():
+            if bar.nombre == nombre_de_bar:
+              imprimir(bar)
+              nombre_valido = 1
+
+          if not nombre_valido:
+            print("\nSeleccione un nombre válido")
+        else:
+          print("\n")
           nombre_valido = 1
-
-      if not nombre_valido:
-        print("\nSeleccione un nombre válido")
     else:
-      nombre_valido = 1
+      print("\nNo hay resultados disponibles con esas características\n")
 
 def opciones_filtrar(bares):
   print("Seleccione una opción de filtro: ")
@@ -80,76 +85,16 @@ def opciones_filtrar(bares):
   elif opcion2 == 2:
     imprimir_nombres(filtro)
 
-def opciones_calificar_bares(bares):
-  nombre_valido = 0
-
-  while not nombre_valido:
-    print("\nNombres disponibles: ")
-    for bar in bares.listar():
-      print("- " + bar.nombre)
-    print("\nIngrese 0 para volver al menú principal")
-
-    nombre_de_bar = str(input("Ingrese el nombre: "))
-
-    if not nombre_de_bar == "0":
-      for bar in bares.listar():
-        if bar.nombre == nombre_de_bar:
-          opciones_calificar_caracteristica(bar)
-          nombre_valido = 1
-
-      if not nombre_valido:
-        print("\nSeleccione un nombre válido")
-    else:
-      nombre_valido = 1
-  
-def opciones_calificar_caracteristica(bar):
-  caracteristica_valido = 0
-
-  while not caracteristica_valido:
-    print("\ncaracteristicas disponibles: ")
-    for caracteristica in bar.caracteristicas:
-      print("- " + caracteristica.nombre)
-    print("\nIngrese 0 para volver al menú principal")
-
-    caracteristica_a_calificar = str(input("Ingrese la característica que desea calificar: "))
-
-    if not caracteristica_a_calificar == "0":
-      for caracteristica in bar.caracteristicas:
-        if caracteristica.nombre == caracteristica_a_calificar:
-          obtener_puntaje(bar, caracteristica)
-          caracteristica_valido = 1
-      
-      if not caracteristica_valido:
-        print("Seleccione una característica existente")
-    else:
-      caracteristica_valido = 1
-
-def obtener_puntaje(bar, caracteristica):
-  puntaje_valido = 0
-
-  while not puntaje_valido:
-    puntaje = int(input("Ingrese un puntaje(0 a 5): "))
-    
-    if 0 <= puntaje <= 5:
-      calificacion = Calificacion(bar, caracteristica, puntaje)
-      registro.agregar(calificacion)
-      puntaje_valido = 1
-    else:
-      print("Ingrese un puntaje válido")
-
 def menu():
   print("Seleccione una opción: ")
   print("1. Listar todos los bares")
   print("2. Filtrar bares")
-  print("3. Calificar un bar")
   opcion = int(input("Ingrese el número: "))
-
+  
   if opcion == 1:
     imprimir_nombres(directorio)
   elif opcion == 2:
     opciones_filtrar(directorio)
-  elif opcion == 3:
-    opciones_calificar_bares(directorio)
 
 def main():
   try:
