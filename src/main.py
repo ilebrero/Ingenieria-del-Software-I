@@ -23,30 +23,27 @@ def imprimir(bar):
       opcion_valida = 1
 
 def imprimir_nombres(bares):
-    if not next(bares.listar(), None) == None:
-      nombre_valido = 0
+  nombre_valido = 0
 
-      while not nombre_valido:
-        print("\nBares disponibles: ")
-        for bar in bares.listar():
-          print("- " + bar.nombre)
-        print("\n¿Desea ver el detalle de algún bar? (Ingrese 0 para volver al menú principal)")
+  while not nombre_valido:
+    print("\nBares disponibles: ")
+    for bar in bares.listar():
+      print("- " + bar.nombre)
+    print("\n¿Desea ver el detalle de algún bar? (Ingrese 0 para volver al menú principal)")
 
-        nombre_de_bar = str(input("Ingrese el nombre: "))
+    nombre_de_bar = str(input("Ingrese el nombre: "))
 
-        if not nombre_de_bar == "0":
-          for bar in bares.listar():
-            if bar.nombre == nombre_de_bar:
-              imprimir(bar)
-              nombre_valido = 1
-
-          if not nombre_valido:
-            print("\nSeleccione un nombre válido")
-        else:
-          print("\n")
+    if not nombre_de_bar == "0":
+      for bar in bares.listar():
+        if bar.nombre == nombre_de_bar:
+          imprimir(bar)
           nombre_valido = 1
+
+      if not nombre_valido:
+        print("\nSeleccione un nombre válido")
     else:
-      print("\nNo hay resultados disponibles con esas características\n")
+      print("\n")
+      nombre_valido = 1
 
 def opciones_filtrar(bares):
   print("Seleccione una opción de filtro: ")
